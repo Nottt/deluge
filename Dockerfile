@@ -1,7 +1,7 @@
 # Base Image
 FROM ubuntu
 
-LABEL 
+LABEL deluge
 
 # Install necessary stuff to compile libtorrent and install deluge later
 
