@@ -39,6 +39,12 @@ ldconfig
 
 RUN add-apt-repository ppa:deluge-team/ppa -y && apt-get update && apt-get install deluged deluge-web deluge-console -y
 
+# Create directories 
+
+RUN mkdir /config && mkdir /downloads
+
+
+
 
 
 
