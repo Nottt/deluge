@@ -7,7 +7,7 @@ Type=simple
 User=$USER
 Group=$USER
 UMask=027
-ExecStart=/usr/bin/deluge-web -c /opt/.config/DelugeUI
+ExecStart=/config/deluge-Web/deluge-web -c /config/deluge-Web
 Restart=on-failure
 
 [Install]
