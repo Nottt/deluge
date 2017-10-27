@@ -1,24 +1,22 @@
 # Base Image
 FROM ubuntu
 
-LABEL deluge
-
 # Install necessary stuff to compile libtorrent and install deluge later
 
 RUN apt-get update && apt-get install -y \
-build-essential /
-checkinstall /
-libboost-system-dev /
-libboost-python-dev /
-libboost-chrono-dev /
-libboost-random-dev /
-libssl-dev /
-curl /
-wget /
-software-properties-common /
-python-software-properties /
-unrar /
-unzip  
+build-essential \
+checkinstall \
+libboost-system-dev \
+libboost-python-dev \
+libboost-chrono-dev \
+libboost-random-dev \
+libssl-dev \
+curl \
+wget \
+software-properties-common \
+python-software-properties \
+unrar \
+unzip \
 && rm -rf /var/lib/apt/lists/*
 
 # Grab latest release of libtorrent and compile it
