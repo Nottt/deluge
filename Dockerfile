@@ -39,9 +39,18 @@ ldconfig
 
 RUN add-apt-repository ppa:deluge-team/ppa -y && apt-get update && apt-get install deluged deluge-web deluge-console -y
 
-# Create directories 
+# Create directories and copy executables to /config
 
-RUN mkdir /config && mkdir /downloads
+RUN mkdir -p /config/deluge /config/deluged /downloads && cp /usr/bin/deluged /config/deluged/ && cp /usr/bin/deluge-web /config/deluge-web
+
+# Enable them 
+
+systemctl enable deluge-web.service \
+&& systemctl enable deluged.service  \
+&& systemctl start deluge-web.service \
+&& systemctl start deluged.service
+
+
 
 
 
@@ -56,7 +65,3 @@ RUN mkdir /config && mkdir /downloads
 
 EXPOSE 8112 58846 58946 58946/udp
 VOLUME /config /downloads
-
-
-
-
