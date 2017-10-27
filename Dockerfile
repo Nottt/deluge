@@ -45,12 +45,12 @@ RUN mkdir -p /config/deluge /config/deluged /downloads && cp /usr/bin/deluged /c
 
 # Enable them 
 
-systemctl enable deluge-web.service \
+RUN systemctl enable deluge-web.service \
 && systemctl enable deluged.service  \
 && systemctl start deluge-web.service \
 && systemctl start deluged.service
 
-
+RUN cp /config/deluged/auth /config/deluge-web/auth
 
 
 
