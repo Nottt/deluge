@@ -1,5 +1,7 @@
-# docker-deluge-latest
-A deluge docker container that is always using the latest deluge and libtorrent version
+# Easy-deluge
+
+A deluge docker container that is easy to use, with plugins and latest releases. 
+
 
 
 *** IN DEVELOPMENT, DO NOT USE IT YET ***
