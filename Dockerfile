@@ -3,7 +3,7 @@ FROM ubuntu
 
 # Install necessary stuff to compile libtorrent and install deluge later
 
-RUN apt-get update && apt-get install \
+RUN apt-get update && apt-get install -y \
 checkinstall \
 build-essential \
 libboost-system-dev \
@@ -16,7 +16,7 @@ wget \
 software-properties-common \
 python-software-properties \
 unrar \
-unzip -y && rm -rf /var/lib/apt/lists/*
+unzip 
 
 # Grab latest release of libtorrent and compile it
 
