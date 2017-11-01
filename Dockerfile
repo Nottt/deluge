@@ -16,8 +16,7 @@ wget \
 software-properties-common \
 python-software-properties \
 unrar \
-unzip -y \
-&& rm -rf /var/lib/apt/lists/*
+unzip -y && rm -rf /var/lib/apt/lists/*
 
 # Grab latest release of libtorrent and compile it
 
