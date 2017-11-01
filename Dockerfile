@@ -21,7 +21,7 @@ unzip \
 
 # Grab latest release of libtorrent and compile it
 
-WORKDIR /root
+ADD 
 
 RUN curl -s https://api.github.com/repos/arvidn/libtorrent/releases/latest | grep "lib*.*gz" | cut -d : -f 2,3 | tr -d \" | wget -qi - \
 tar xf *gz \
@@ -43,14 +43,9 @@ RUN mkdir -p /config/deluge /config/deluged /downloads && cp /usr/bin/deluged /c
 
 # Enable them 
 
-ADD docker-deluge-latest/files/deluged.service /etc/systemd/system/deluged.service
-ADD docker-deluge-latest/files/deluge-web.service /etc/systemd/system/deluge-web.service
+COPY docker-deluge-latest/files/deluged.service /etc/systemd/system/deluged.service
 
-RUN systemctl enable deluge-web.service \
-&& systemctl enable deluged.service  \
-&& cp /config/deluged/auth /config/deluge-web/auth \
-&& systemctl start deluge-web.service \
-&& systemctl start deluged.service
+
 
 
 
