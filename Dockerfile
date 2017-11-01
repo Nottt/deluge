@@ -4,7 +4,7 @@ FROM ubuntu
 # Install necessary stuff to compile libtorrent and install deluge later
 
 RUN apt-get update && apt-get install -y \
-checkinstall \
+## checkinstall \
 build-essential \
 libboost-system-dev \
 libboost-python-dev \
