@@ -4,7 +4,7 @@
 
 # Install necessary packages 
 
-apt install build-essential checkinstall libboost-system-dev libboost-python-dev libboost-chrono-dev libboost-random-dev libssl-dev curl wget  -y
+apt install build-essential checkinstall libboost-system-dev libboost-python-dev libboost-chrono-dev libboost-random-dev libssl-dev curl wget tar  -y
 
 # Grab latest release of libtorrent and compile it 
 
