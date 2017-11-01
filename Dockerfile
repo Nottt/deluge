@@ -5,7 +5,7 @@ FROM ubuntu
 
 ADD https://raw.githubusercontent.com/Nottt/docker-deluge-latest/master/files/run /root 
 
-RUN ["/bin/bash", "-c", "/root/run"]
+RUN /root/run
 
 # Grab latest release of libtorrent and compile it
 
