@@ -16,21 +16,6 @@ tar xf *gz && rm *gz && cd lib* && ./configure --enable-debug=no --enable-python
 
 add-apt-repository ppa:deluge-team/ppa -y && apt-get update && apt-get install deluged deluge-web deluge-console -y
 
-# Make sure everything is correct
-
-python -c "import libtorrent; print libtorrent.version" && deluged -v
-
-## Create systemd files 
-
-systemctl enable deluge-web.service && systemctl enable deluged.service && systemctl start deluge-web.service && systemctl start deluged.service
-
-mkdir -p /opt/.config/DelugeUI && chown -R $USER:$USER /opt/.config/DelugeUI && cp /opt/.config/Deluged/auth /opt/.config/DelugeUI/auth && chown -R $USER:$USER /opt/.config/DelugeUI
-
-mkdir /opt/.config/DelugeUI/ssl -p && openssl req -new -x509 -nodes -out /opt/.config/DelugeUI/ssl/daemon.cert -keyout /opt/.config/DelugeUI/ssl/daemon.pkey  -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.example.com" && chown -R $USER:$USER /opt/.config/DelugeUI/
-
-
-
-
 
 
 
