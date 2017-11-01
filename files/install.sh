@@ -8,9 +8,9 @@ apt-get update  && apt install build-essential checkinstall libboost-system-dev 
 
 # Grab latest release of libtorrent and compile it 
 
-curl -s https://api.github.com/repos/arvidn/libtorrent/releases/latest | grep "lib*.*gz" | cut -d : -f 2,3 | tr -d \" | wget -qi -
+# curl -s https://api.github.com/repos/arvidn/libtorrent/releases/latest | grep "lib*.*gz" | cut -d : -f 2,3 | tr -d \" | wget -qi -
 
-tar xf *gz && rm *gz && cd lib* && ./configure --enable-debug=no --enable-python-binding --with-libiconv && make && make -j$(nproc) && checkinstall && ldconfig
+# tar xf *gz && rm *gz && cd lib* && ./configure --enable-debug=no --enable-python-binding --with-libiconv && make && make -j$(nproc) && checkinstall && ldconfig
 
 # ADD Deluge PPA to keep always updated and install deluge
 
