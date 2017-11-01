@@ -14,7 +14,7 @@ apt-get update  && apt install build-essential checkinstall libboost-system-dev 
 
 # ADD Deluge PPA to keep always updated and install deluge
 
-add-apt-repository ppa:deluge-team/ppa -y && apt-get update && apt-get install deluged deluge-web deluge-console -y
+# add-apt-repository ppa:deluge-team/ppa -y && apt-get update && apt-get install deluged deluge-web deluge-console -y
 
 
 
