@@ -19,8 +19,7 @@ libboost-random-dev \
 libssl-dev \
 unrar \
 software-properties-common \
-apt-utils \
-curl && \
+apt-utils && \
 
 # Compile 
 
@@ -50,9 +49,10 @@ chown -R deluge:deluge /config /downloads && \
     
     apt-get autoremove -y && \
     apt-get clean && \
-    rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* /root
+    rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* /root && \
+    rm * /root
 
-COPY s6/ /etc
+COPY s6/ /
 
 
 EXPOSE 8112 58846 58946 58946/udp
