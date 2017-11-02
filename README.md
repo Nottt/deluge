@@ -10,7 +10,7 @@ docker run --rm \
            --name deluge \
            -p 8112:8112 \
            -p 58846:58846 \
-           -p 49152:49152 \
+           -p 50000:50000 \
            -e PUID=1010 \
            -e PGID=1010 \
            -v /etc/localtime:/etc/localtime:ro \
