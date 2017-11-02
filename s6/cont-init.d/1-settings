@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# If password isn't set, create one
+
+if [ -z $PASSWORD ]; then
+PASSWORD=$(tr -dc '[:alnum:]' </dev/urandom | dd bs=1 count=32 2>/dev/null)
+fi 
+
+# Check if auth files exist, are equal and not empty if not create them
+
+auth1=/config/Deluged/auth
+auth2=/config/DelugeWEB/auth
+md5=$(md5sum /config/Deluged/auth)
+md5=$(md5sum /config/Deluged/auth)
+
+
+if [ -s $auth1 ] && [ -s $auth2 ] && [ $auth1 = $auth2 ]; then 
+:
+else 
+
+cat > $auth1 <<EOF
+localclient:$PASSWORD:10
+docker:$PASSWORD:10
+EOF
+
+cat > $auth2 <<EOF
+localclient:$PASSWORD:10
+EOF
+
+fi
+
+# Check if core.conf exists, if not download it 
+
+core=/config/Deluged/core.conf
+
+if [ -s $core ]; then
+:
+else
+curl -o https://raw.githubusercontent.com/Nottt/easy-deluge/master/conf/core.conf $core
+
+
