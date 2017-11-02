@@ -6,6 +6,7 @@ A deluge docker container that is easy to use, with plugins and latest releases.
 
 *** IN DEVELOPMENT, DO NOT USE IT YET ***
 
+```
 docker run --rm \
            --name deluge \
            -p 8112:8112 \
@@ -16,3 +17,4 @@ docker run --rm \
            -v /etc/localtime:/etc/localtime:ro \
            -v /opt/deluge:/config \
            Nott/easy-deluge
+```
