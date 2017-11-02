@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bash
+
+source /etc/env
+
+ exec s6-setuidgid deluge /config/deluged  -c /config/Deluged
+ exec s6-setuidgid deluge /config/deluge-web  -c  /config/DelugeWEB
+ 
+ 
