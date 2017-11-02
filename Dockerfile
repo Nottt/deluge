@@ -51,7 +51,7 @@ chown -R deluge:deluge /config /downloads && \
 apt remove software-properties-common apt-utils -y && \
 apt-get autoremove -y && \
 apt-get clean && \
-rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* /root/*
+rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* /root/libtorrent.deb
 
 # Copy S6 init scripts
 
