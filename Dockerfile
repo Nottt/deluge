@@ -17,6 +17,7 @@ libboost-chrono-dev \
 libboost-random-dev \
 libssl-dev \
 unrar \
+wget \
 software-properties-common \
 apt-utils && \
 
@@ -43,10 +44,19 @@ usermod -G users deluge && \
 
 # Set permissions
 
-chown -R deluge:deluge /config /downloads 
+chown -R deluge:deluge /config /downloads && \
+
+# Cleanup 
+
+apt remove software-properties-common apt-utils -y && \
+rm /root/libtorrent.deb && \
+apt-get autoremove -y && \
+apt-get clean && \
+rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
+
+# Copy S6 init scripts
 
 COPY s6/ /etc
-
 
 EXPOSE 8112 58846 58946 58946/udp
 VOLUME /config /downloads
