@@ -12,21 +12,20 @@ add-apt-repository ppa:deluge-team/ppa -y && apt-get update && apt-get install d
 
 # Create necessary folders 
 
-mkdir -p /config/data /downloads/complete /downloads/add /downloads/incomplete /downloads/seed 
+mkdir -p /config/ /downloads/complete /downloads/add /downloads/incomplete /downloads/seed 
 
 # Move necessary folders to /config
 
-cp /usr/bin/deluge* /config 
+mv /usr/bin/deluge* /config 
 
 # Create user and set permissions
 
 adduser --disabled-login --no-create-home --gecos "" deluge
 
+# Set permissions
 
+chown -R deluge:deluge /config /downloads
 
-
-# install s6-overlay
-    curl -s -o - -L "https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz" | tar xzf - -C / && \
 
 
 
