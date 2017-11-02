@@ -18,3 +18,14 @@ docker run --rm \
            -v /opt/deluge:/config \
            Nott/easy-deluge
 ```
+
+Installed plugins : 
+
+ltconfig
+LabelPlus
+IPstatusbar
+CopyMagnetURI
+Default Trackers
+Auto Remove
+PreventSuspendPlus
+Streaming
