@@ -47,7 +47,7 @@ usermod -G users deluge && \
 
 # Set permissions
 
-chown -R deluge:deluge /config /downloads && \
+chown -R deluge:deluge /config /downloads 
 
 COPY s6/ /
 
