@@ -17,7 +17,7 @@ libboost-chrono-dev \
 libboost-random-dev \
 libssl-dev \
 unrar \
-wget \
+curl \
 software-properties-common \
 apt-utils && \
 
