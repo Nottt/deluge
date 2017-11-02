@@ -49,7 +49,7 @@ chown -R deluge:deluge /config /downloads && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* /root && \
-    rm * /root
+    rm /root/*
 
 COPY s6/ /
 
