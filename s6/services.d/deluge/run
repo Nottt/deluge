@@ -2,7 +2,4 @@
 
 source /etc/env
 
- exec s6-setuidgid deluge /usr/bin/deluged  -c /config
-
-
- 
+exec s6-setuidgid deluge /usr/bin/deluged -d -c /config/Deluged
