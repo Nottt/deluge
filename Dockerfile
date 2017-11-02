@@ -17,7 +17,6 @@ libboost-chrono-dev \
 libboost-random-dev \
 libssl-dev \
 unrar \
-curl \
 software-properties-common \
 apt-utils && \
 
@@ -57,6 +56,7 @@ rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
 # Copy S6 init scripts
 
 COPY s6/ /etc
+COPY files/ /root
 
 EXPOSE 8112 58846 50000 50000/udp
 VOLUME /config /downloads
