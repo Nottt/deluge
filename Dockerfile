@@ -58,7 +58,7 @@ rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
 
 COPY s6/ /etc
 
-EXPOSE 8112 58846 58946 58946/udp
+EXPOSE 8112 58846 50000 50000/udp
 VOLUME /config /downloads
 
 ENTRYPOINT ["/init"]
