@@ -35,7 +35,7 @@ apt-get install deluged deluge-web deluge-console -y && \
 
 # Create necessary folders 
 
-mkdir -p /config/ /downloads/complete /downloads/add /downloads/incomplete /downloads/seed && \
+mkdir -p /config/plugins /downloads/complete /downloads/add /downloads/incomplete /downloads/seed && \
 
 # Create user and set permissions
 
