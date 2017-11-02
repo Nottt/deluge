@@ -20,7 +20,7 @@ mv /usr/bin/deluge* /config
 
 # Create user and set permissions
 
-adduser --disabled-login --no-create-home --gecos "" deluge
+adduser --disabled-login --no-create-home --gecos "" deluge &&  usermod -G users deluge
 
 # Set permissions
 
