@@ -12,5 +12,3 @@ PGID           | $PGID
 
 groupmod -o -g "$PGID" deluge
 usermod -o -u "$PUID" deluge
-
-chown -R deluge:deluge /config /downloads 
