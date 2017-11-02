@@ -36,10 +36,6 @@ apt-get install deluged deluge-web deluge-console -y && \
 
 mkdir -p /config/ /downloads/complete /downloads/add /downloads/incomplete /downloads/seed && \
 
-# Move necessary folders to /config
-
-mv /usr/bin/deluge* /config && \ 
-
 # Create user and set permissions
 
 adduser --disabled-login --no-create-home --gecos "" deluge && \
@@ -49,7 +45,7 @@ usermod -G users deluge && \
 
 chown -R deluge:deluge /config /downloads 
 
-COPY s6/ /
+COPY s6/ /etc
 
 
 EXPOSE 8112 58846 58946 58946/udp
