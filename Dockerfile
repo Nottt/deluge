@@ -9,6 +9,7 @@ ENV LANG='C.UTF-8' LANGUAGE='C.UTF-8' LC_ALL='C.UTF-8'
 ADD https://github.com/Nottt/easy-deluge/releases/download/1.1.5/libtorrent-1.1.5-1_amd64.deb /root/libtorrent.deb
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.21.1.1/s6-overlay-amd64.tar.gz /tmp/
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
+COPY files/ /root
 
 RUN apt-get update && apt install -y \
 libboost-system-dev \
@@ -48,15 +49,13 @@ chown -R deluge:deluge /config /downloads && \
 # Cleanup 
 
 apt remove software-properties-common apt-utils -y && \
-rm /root/libtorrent.deb && \
 apt-get autoremove -y && \
 apt-get clean && \
-rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
+rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* /root/*
 
 # Copy S6 init scripts
 
 COPY s6/ /etc
-COPY files/ /root
 
 EXPOSE 8112 58846 50000 50000/udp
 VOLUME /config /downloads
