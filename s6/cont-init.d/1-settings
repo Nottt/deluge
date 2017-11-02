@@ -38,4 +38,5 @@ if [ -s $core ]; then
 else
 curl -o https://raw.githubusercontent.com/Nottt/easy-deluge/master/conf/core.conf $core
 
+chown -R deluge:deluge /config /downloads 
 
