@@ -2,4 +2,4 @@
 
 source /etc/env
 
-exec s6-setuidgid deluge /usr/bin/deluged -d -c /config/deluged
+exec s6-setuidgid deluge /usr/bin/deluged -d -c /config/deluged --loglevel=info -l /config/deluged.log
