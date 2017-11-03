@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/with-contenv bash
+source /etc/env
 
 # If password isn't set, create one
 
@@ -8,10 +9,10 @@ fi
 
 # Check if auth files exist, are equal and not empty if not create them
 
-auth1=/config/Deluged/auth
-auth2=/config/DelugeWEB/auth
-md5=$(md5sum /config/Deluged/auth)
-md5=$(md5sum /config/Deluged/auth)
+auth1=/config/deluged-web/auth
+auth2=/config/deluged-web/auth
+md5=$(md5sum /config/deluged/auth)
+md5=$(md5sum /config/deluged/auth)
 
 
 if [ -s $auth1 ] && [ -s $auth2 ] && [ $auth1 = $auth2 ]; then 
@@ -31,12 +32,23 @@ fi
 
 # Check if core.conf exists, if not download it 
 
-core=/config/Deluged/core.conf
+core=/config/deluged/core.conf
 
 if [ -s $core ]; then
 :
 else
-curl -o https://raw.githubusercontent.com/Nottt/easy-deluge/master/conf/core.conf $core
+mv /root/core.conf $core
+fi
 
-chown -R deluge:deluge /config /downloads 
+# Move plugins if they don't exist already
 
+plugins=/config/deluged/plugins
+
+if [ -z "$(ls -A $plugins)" ]; then
+
+mv /root/*.egg $plugins
+else
+:
+fi
+
+chown -R deluge:deluge /config /downloads
