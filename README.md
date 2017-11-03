@@ -29,3 +29,8 @@ Default Trackers
 Auto Remove
 PreventSuspendPlus
 Streaming
+
+To do list -
+
+Automatically add a updated list of trackers to public trackers, using https://github.com/ngosang/trackerslist
+
