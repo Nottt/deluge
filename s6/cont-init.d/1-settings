@@ -13,8 +13,13 @@ auth2=/config/deluge-web/auth
 if [ -f $auth1 ] && [ -s $auth1 ] && [ -f $auth2 ] && [ -s $auth2 ] && cmp $auth1 $auth2 &>/dev/null; then
   :
 else
+
+if [ -z $PASSWORD ]; then
   PASSWORD=$(tr -dc '[:alnum:]' </dev/urandom | dd bs=1 count=32 2>/dev/null)
   echo "Password wasn't given, auth file doesn't exist or are not equal, use this password for GTK access with user docker :" $PASSWORD
+else
+:
+fi
 fi
 
 # Check if auth files exist, are equal and not empty if not create them
