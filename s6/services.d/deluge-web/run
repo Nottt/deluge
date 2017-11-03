@@ -2,4 +2,4 @@
 
 source /etc/env
 
-exec s6-setuidgid deluge /usr/bin/deluge-web  -c  /config/DelugeWEB
+exec s6-setuidgid deluge /usr/bin/deluge-web  -c  /config/deluge-web
