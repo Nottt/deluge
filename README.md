@@ -16,7 +16,7 @@ docker run --rm \
            -v ~/downloads:/downloads \
            -v /etc/localtime:/etc/localtime:ro \
            -v /opt/deluge:/config \
-           Nott/easy-deluge
+           nott/easy-deluge
 ```
 ## Parameters
 
@@ -46,7 +46,7 @@ By default completed downloads are moved to /complete and kept in /incomplete wh
 
 # Plugins : 
 
-Enabled by default with custom settings :
+## Enabled by default with custom settings :
 
 * **Label :**
 
@@ -57,7 +57,7 @@ Torrents sent with Sonarr/Radarr will automatically be moved to their relatives 
 Torrents added to /downloads/add, will be automatically added with no labels.
 Torrends added to either /music or /games subfolders will be added with same label and moved to their relatives folder on completion.
 
-Enabled by default with empty settings :
+## Enabled by default with empty settings :
 
 * **DefaultTrackers** = Add trackers automatically to public trackers only
 
@@ -67,7 +67,7 @@ Enabled by default with empty settings :
 
 To configure those you'll have to use the GTK UI, but it's set and forget after that.
 
-Available to be enabled :
+## Available to be enabled :
 
 * **ltconfig** = Want extreming tuning and modification? Enjoy the latest libtorrent library and start tuning it with a click of a button.
 
