@@ -3,7 +3,7 @@ source /etc/env
 
 # Make sure folders exist
 
-mkdir -p /downloads/add /downloads/complete /downloads/incomplete /downloads/seed /config/deluged/plugins /config/deluge-web/
+mkdir -p /downloads/add/games /downloads/add/music /downloads/complete /downloads/incomplete /downloads/seed /config/deluged/plugins /config/deluge-web/
 
 # If password isn't set, create one
 
