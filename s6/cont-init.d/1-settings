@@ -51,4 +51,10 @@ else
 :
 fi
 
+# Create folders 
+
+mkdir -p /downloads/add  /downloads/complete /downloads/incomplete /downloads/seed
+
+# Correct permissions
+
 chown -R deluge:deluge /config /downloads
