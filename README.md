@@ -36,13 +36,13 @@ If you need to see your password again, in a terminal run `docker exec -it delug
 
 ## Setting up the application 
 
-The admin interface is available at http://<ip>:8112 with a default password of deluge.
+The admin interface is available at `http://<ip>:8112` with a default password of deluge.
 
 To change the password (recommended) log in to the web interface and go to Preferences->Interface->Password.
 
-The GTK UI interface is available at http://<ip>:8112 with a default username of docker and the password you set.
+The GTK UI interface is available at `http://<ip>:8112` with a default username of docker and the password you set.
 
-By default completed downloads are moved to /complete and kept in /incomplete while downloading. There's also /seed if you only want to seed.
+By default completed downloads are moved to `/complete` and kept in `/incomplete` while downloading. There's also `/seed` if you only want to seed.
 
 # Plugins : 
 
@@ -76,4 +76,5 @@ To configure those you'll have to use the GTK UI, but it's set and forget after 
 # To Do List
 
 Automatically add a updated list of trackers to public trackers, using https://github.com/ngosang/trackerslist
+
 Maybe implement automatic rclone upload
