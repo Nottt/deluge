@@ -1,24 +1,27 @@
 #!/usr/bin/with-contenv bash
 source /etc/env
 
+# Make sure folders exist
+
+mkdir -p /downloads/add /downloads/complete /downloads/incomplete /downloads/seed /config/deluged/plugins /config/deluge-web/
+
 # If password isn't set, create one
 
-if [ -z $PASSWORD ]; then
-PASSWORD=$(tr -dc '[:alnum:]' </dev/urandom | dd bs=1 count=32 2>/dev/null)
-fi 
+auth1=/config/deluged/auth
+auth2=/config/deluge-web/auth
+
+if [ -f $auth1 ] && [ -s $auth1 ] && [ -f $auth2 ] && [ -s $auth2 ] && cmp $auth1 $auth2 &>/dev/null; then
+  :
+else
+  PASSWORD=$(tr -dc '[:alnum:]' </dev/urandom | dd bs=1 count=32 2>/dev/null)
+  echo "Password wasn't given, auth file doesn't exist or are not equal, use this password for GTK access with user docker :" $PASSWORD
+fi
 
 # Check if auth files exist, are equal and not empty if not create them
 
-auth1=/config/deluged-web/auth
-auth2=/config/deluged-web/auth
-md5=$(md5sum /config/deluged/auth)
-md5=$(md5sum /config/deluged/auth)
-
-
-if [ -s $auth1 ] && [ -s $auth2 ] && [ $auth1 = $auth2 ]; then 
-:
-else 
-
+if [ -f $auth1 ] && [ -s $auth1 ] && [ -f $auth2 ] && [ -s $auth2 ] && cmp $auth1 $auth2 &>/dev/null; then
+    : 
+else
 cat > $auth1 <<EOF
 localclient:$PASSWORD:10
 docker:$PASSWORD:10
@@ -26,11 +29,11 @@ EOF
 
 cat > $auth2 <<EOF
 localclient:$PASSWORD:10
+docker:$PASSWORD:10
 EOF
-
 fi
 
-# Check if core.conf exists, if not download it 
+# Check if core.conf exists, if not copy it 
 
 core=/config/deluged/core.conf
 
@@ -48,13 +51,18 @@ if [ -z "$(ls -A $plugins)" ]; then
 
 mv /root/*.egg $plugins
 else
-:
+rm /root/*.egg
 fi
 
-# Create folders 
 
-mkdir -p /downloads/add  /downloads/complete /downloads/incomplete /downloads/seed
+# Customize plugins
 
-# Correct permissions
+if [ -s /opt/deluge/deluged/label.conf ]; then
+mv /root/label.conf /opt/deluge/deluged
+else
+rm /root/label.conf
+fi
+
+# Fix permissions
 
 chown -R deluge:deluge /config /downloads
