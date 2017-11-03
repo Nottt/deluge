@@ -54,7 +54,6 @@ else
 rm /root/*.egg
 fi
 
-
 # Customize plugins
 
 if [ -s /opt/deluge/deluged/label.conf ]; then
@@ -62,6 +61,13 @@ mv /root/label.conf /opt/deluge/deluged
 else
 rm /root/label.conf
 fi
+
+if [ -s /opt/deluge/deluged/autoadd.conf ]; then
+mv /root/autoadd.conf /opt/deluge/deluged
+else
+rm /root/autoadd.conf
+fi
+
 
 # Fix permissions
 
