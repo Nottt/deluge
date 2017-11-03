@@ -35,16 +35,12 @@ apt-get install deluged deluge-web deluge-console -y && \
 
 # Create necessary folders 
 
-mkdir -p /config/plugins /downloads/complete /downloads/add /downloads/incomplete /downloads/seed && \
+mkdir -p /config /downloads && \
 
 # Create user and set permissions
 
 adduser --disabled-login --no-create-home --gecos "" deluge && \
 usermod -G users deluge && \
-
-# Set permissions
-
-chown -R deluge:deluge /config /downloads && \
 
 # Cleanup 
 
