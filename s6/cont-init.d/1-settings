@@ -57,15 +57,15 @@ fi
 # Customize plugins
 
 if [ -s /config/deluged/label.conf ]; then
-mv /root/label.conf /config/deluged
-else
 rm /root/label.conf
+else
+mv /root/label.conf /config/deluged 
 fi
 
 if [ -s /config/deluged/autoadd.conf ]; then
-mv /root/autoadd.conf /config/deluged
-else
 rm /root/autoadd.conf
+else
+mv /root/autoadd.conf /config/deluged
 fi
 
 # Fix permissions
