@@ -16,7 +16,7 @@ docker run --rm \
            -v ~/downloads:/downloads \
            -v /etc/localtime:/etc/localtime:ro \
            -v /opt/deluge:/config \
-           nott/easy-deluge
+           nottt/easy-deluge
 ```
 ## Parameters
 
