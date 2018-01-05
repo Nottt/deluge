@@ -26,7 +26,7 @@ docker run --rm \
 * `-v /opt/deluge:/config` - Directory where config files are stored
 * `-v ~/downloads:/downloads` - Torrent download directory
 * `-v /etc/localtime:/etc/localtime:ro` - Sync time with host
-* `-p *:*` - Ports used
+* `-p *:*` - Ports used, only change the left ports.
 
 **When editing `-v` and `-p` paremeters, the host is always the left and the docker the right. Only change the left**
 
