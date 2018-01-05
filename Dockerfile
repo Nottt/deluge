@@ -19,7 +19,21 @@ libboost-random-dev \
 libssl-dev \
 unrar \
 software-properties-common \
-apt-utils && \
+apt-utils \
+python-pip && \
+
+# Add necessary stuff for mp4 automation
+
+pip install qtfaststart && \
+pip install python-dateutil && \
+pip install stevedore==1.19.1 && \
+pip install "subliminal<2" && \
+pip install "guessit<2" && \
+pip install babelfish && \
+pip install requests-cache && \ 
+pip install requests[security] && \
+pip install requests && \
+
 
 # Compile 
 
