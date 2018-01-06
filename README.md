@@ -77,4 +77,3 @@ To configure those you'll have to use the GTK UI, but it's set and forget after 
 
 Automatically add a updated list of trackers to public trackers, using https://github.com/ngosang/trackerslist
 
-Maybe implement automatic rclone upload
