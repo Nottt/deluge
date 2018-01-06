@@ -38,12 +38,6 @@ pip install requests-cache && \
 pip install requests[security] && \
 pip install requests && \
 
-# Add rclone automation 
-
-unzip /tmp/rclone-current-linux-amd64.zip && \
-cd /tmp/rclone-*-linux-amd64 && \
-cp rclone /usr/sbin/ && \
-
 # Compile 
 
 dpkg -i /root/libtorrent.deb && \
@@ -64,7 +58,6 @@ mkdir -p /config /downloads && \
 
 adduser --disabled-login --no-create-home --gecos "" deluge && \
 usermod -G users deluge && \
-chown deluge:deluge /usr/sbin/rclone && \
 
 # Cleanup 
 
