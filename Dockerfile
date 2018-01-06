@@ -8,6 +8,7 @@ ENV LANG='C.UTF-8' LANGUAGE='C.UTF-8' LC_ALL='C.UTF-8'
 
 ADD https://github.com/Nottt/easy-deluge/releases/download/1.1.5/libtorrent-1.1.5-1_amd64.deb /root/libtorrent.deb
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.21.1.1/s6-overlay-amd64.tar.gz /tmp/
+ADD https://downloads.rclone.org/rclone-current-linux-amd64.zip /tmp/
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 COPY files/ /root
 
@@ -20,6 +21,8 @@ libssl-dev \
 unrar \
 software-properties-common \
 apt-utils \
+wget \
+unzip \
 python-pip && \
 
 # Add necessary stuff for mp4 automation
@@ -34,6 +37,11 @@ pip install requests-cache && \
 pip install requests[security] && \
 pip install requests && \
 
+# Add rclone automation 
+
+unzip /tmp/rclone-current-linux-amd64.zip && \
+cd /tmp/rclone-*-linux-amd64 && \
+cp rclone /usr/sbin/ && \
 
 # Compile 
 
@@ -55,6 +63,7 @@ mkdir -p /config /downloads && \
 
 adduser --disabled-login --no-create-home --gecos "" deluge && \
 usermod -G users deluge && \
+chown deluge:deluge /usr/sbin/rclone && \
 
 # Cleanup 
 
