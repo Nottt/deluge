@@ -57,6 +57,10 @@ Torrents sent with Sonarr/Radarr will automatically be moved to their relatives 
 Torrents added to /downloads/add, will be automatically added with no labels.
 Torrends added to either /music or /games subfolders will be added with same label and moved to their relatives folder on completion.
 
+* **SimpleExtractor :**
+
+Files will be automatically extracted inside the folder they were downloaded. You don't need to do anything! The .rar/.zip files will be kept for seeding. 
+
 ## Enabled by default with empty settings :
 
 * **DefaultTrackers** = Add trackers automatically to public trackers only
@@ -76,4 +80,30 @@ To configure those you'll have to use the GTK UI, but it's set and forget after 
 # To Do List
 
 Automatically add a updated list of trackers to public trackers, using https://github.com/ngosang/trackerslist
+
+Push torrents to rutorrent for seeding
+
+# How to contribute
+
+1. Clone the dev branch with `git clone -b dev https://github.com/Nottt/easy-deluge`
+2. Go inside the created directory and build the new docker with `docker build -t deluge_dev .`
+3. Run it with :
+```
+docker run --rm \
+           --name deluge-dev1 \
+           -p 7854:8112 \
+           -p 60002:58846 \
+           -p 60000:50000 \
+           -e PUID=1010 \
+           -e PGID=1010 \
+           -e PASSWORD=password \
+           -v ~/deluge-dev/downloads:/downloads \
+           -v /etc/localtime:/etc/localtime:ro \
+           -v /opt/deluge-dev:/config \
+           deluge_dev
+```
+4. Test your features
+5. Pull 
+
+OBS: Don't forget to change the ports, folders and --name and clean up the folders if you rebuild the docker after changing stuff
 
