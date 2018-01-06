@@ -23,6 +23,7 @@ software-properties-common \
 apt-utils \
 wget \
 unzip \
+p7zip-full \
 python-pip && \
 
 # Add necessary stuff for mp4 automation
