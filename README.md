@@ -57,6 +57,10 @@ Torrents sent with Sonarr/Radarr will automatically be moved to their relatives 
 Torrents added to /downloads/add, will be automatically added with no labels.
 Torrends added to either /music or /games subfolders will be added with same label and moved to their relatives folder on completion.
 
+* **SimpleExtractor :**
+
+Files will be automatically extracted inside the folder they were downloaded. You don't need to do anything! The .rar/.zip files will be kept for seeding. 
+
 ## Enabled by default with empty settings :
 
 * **DefaultTrackers** = Add trackers automatically to public trackers only
