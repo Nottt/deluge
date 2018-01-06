@@ -8,6 +8,7 @@ ENV LANG='C.UTF-8' LANGUAGE='C.UTF-8' LC_ALL='C.UTF-8'
 
 ADD https://github.com/Nottt/easy-deluge/releases/download/1.1.5/libtorrent-1.1.5-1_amd64.deb /root/libtorrent.deb
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.21.1.1/s6-overlay-amd64.tar.gz /tmp/
+ADD https://downloads.rclone.org/rclone-current-linux-amd64.zip /tmp/
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 COPY files/ /root
 
@@ -19,7 +20,23 @@ libboost-random-dev \
 libssl-dev \
 unrar \
 software-properties-common \
-apt-utils && \
+apt-utils \
+wget \
+unzip \
+p7zip-full \
+python-pip && \
+
+# Add necessary stuff for mp4 automation
+
+pip install qtfaststart && \
+pip install python-dateutil && \
+pip install stevedore==1.19.1 && \
+pip install "subliminal<2" && \
+pip install "guessit<2" && \
+pip install babelfish && \
+pip install requests-cache && \ 
+pip install requests[security] && \
+pip install requests && \
 
 # Compile 
 

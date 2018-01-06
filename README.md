@@ -26,7 +26,7 @@ docker run --rm \
 * `-v /opt/deluge:/config` - Directory where config files are stored
 * `-v ~/downloads:/downloads` - Torrent download directory
 * `-v /etc/localtime:/etc/localtime:ro` - Sync time with host
-* `-p *:*` - Ports used
+* `-p *:*` - Ports used, only change the left ports.
 
 **When editing `-v` and `-p` paremeters, the host is always the left and the docker the right. Only change the left**
 
@@ -81,7 +81,7 @@ To configure those you'll have to use the GTK UI, but it's set and forget after 
 
 Automatically add a updated list of trackers to public trackers, using https://github.com/ngosang/trackerslist
 
-Maybe implement automatic rclone upload
+Push torrents to rutorrent for seeding
 
 # How to contribute
 
@@ -106,3 +106,4 @@ docker run --rm \
 5. Pull 
 
 OBS: Don't forget to change the ports, folders and --name and clean up the folders if you rebuild the docker after changing stuff
+

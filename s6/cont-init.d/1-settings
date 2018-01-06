@@ -73,6 +73,13 @@ else
 mv /root/autoadd.conf /config/deluged
 fi
 
+if [ -s /config/deluged/simpleextractor.conf ]; then
+rm /root/simpleextractor.conf
+else
+mv /root/simpleextractor.conf /config/deluged
+fi
+
+
 # Fix permissions
 
 chown -R deluge:deluge /config /downloads
