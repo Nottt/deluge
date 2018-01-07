@@ -107,3 +107,8 @@ docker run --rm \
 
 OBS: Don't forget to change the ports, folders and --name and clean up the folders if you rebuild the docker after changing stuff
 
+# Known Issues 
+
+## Thin Client not loading the GUI for plugins
+
+The thin client need the eggs locally in their plugin folder to render a GUI. This is usually `AppData\Roaming\deluge\plugins` on Windows. Download them from this github and put them in this folder before starting the thin client. 
