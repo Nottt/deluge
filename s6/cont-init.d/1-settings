@@ -3,7 +3,7 @@ source /etc/env
 
 # Make sure folders exist
 
-mkdir -p /downloads/add/games /downloads/add/music /downloads/complete /downloads/incomplete /downloads/seed /config/deluged/plugins /config/deluge-web/
+mkdir -p /downloads/add/games /downloads/add/music /downloads/complete /downloads/incomplete /downloads/seed /config/deluged/plugins /config/deluge-web/plugins
 
 # If password isn't set, create one
 
@@ -38,9 +38,10 @@ docker:$PASSWORD:10
 EOF
 fi
 
-# Check if core.conf exists, if not copy it 
+# Check if conf files exists, if not copy it 
 
 core=/config/deluged/core.conf
+web=/config/deluge-web/web.conf
 
 if [ -s $core ]; then
 :
@@ -48,12 +49,23 @@ else
 mv /root/core.conf $core
 fi
 
+
+if [ -s $web ]; then
+:
+else
+mv /root/web.conf $web
+fi
+
+
 # Move plugins if they don't exist already
 
 plugins=/config/deluged/plugins
 
-if [ -z "$(ls -A $plugins)" ]; then
+if [ ! -e /config/deluge-web/plugins/AutoRemovePlus-0.6.1-py2.7.egg ]; then
+ cp /root/AutoRemovePlus-0.6.1-py2.7.egg /config/deluge-web/plugins
+fi
 
+if [ -z "$(ls -A $plugins)" ]; then
 mv /root/*.egg $plugins
 else
 rm /root/*.egg
@@ -82,4 +94,4 @@ fi
 
 # Fix permissions
 
-chown -R deluge:deluge /config /downloads
+chown -R deluge:deluge /config /downloads /root
