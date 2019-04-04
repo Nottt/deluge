@@ -1,32 +1,30 @@
 #!/usr/bin/with-contenv bash
 source /etc/env
 
-# Make sure folders exist
+DEBIAN_FRONTEND=noninteractive
 
-mkdir -p /downloads/add/games /downloads/add/music /downloads/complete /downloads/incomplete /downloads/seed /config/deluged/plugins /config/deluge-web/plugins
+# Install necessary packages
 
-# If password isn't set, create one
+add-apt-repository ppa:deluge-team/ppa -y > /dev/null 2>&1 && apt-get update > /dev/null 2>&1
+
+apt-get install -y deluged deluge-web deluge-console unrar unzip p7zip-full > /dev/null 2>&1
+
+# Create necessary folders 
+
+mkdir -p /downloads/add/games /downloads/add/music /downloads/complete /downloads/incomplete /downloads/seed /config/deluged/plugins /config/deluge-web/plugins 
+
+# Create user
+
+adduser --disabled-login --no-create-home --gecos "" deluge > /dev/null 2>&1
+groupmod -o -g "$PGID" deluge > /dev/null 2>&1
+usermod -o -u "$PUID" deluge > /dev/null 2>&1
+
+# If password env is not given generate a random one and create auth files
 
 auth1=/config/deluged/auth
 auth2=/config/deluge-web/auth
 
-if [ -f $auth1 ] && [ -s $auth1 ] && [ -f $auth2 ] && [ -s $auth2 ] && cmp $auth1 $auth2 &>/dev/null; then
-  :
-else
-
-if [ -z $PASSWORD ]; then
-  PASSWORD=$(tr -dc '[:alnum:]' </dev/urandom | dd bs=1 count=32 2>/dev/null)
-  echo "Password wasn't given, auth file doesn't exist or are not equal, use this password for GTK access with user docker :" $PASSWORD
-else
-:
-fi
-fi
-
-# Check if auth files exist, are equal and not empty if not create them
-
-if [ -f $auth1 ] && [ -s $auth1 ] && [ -f $auth2 ] && [ -s $auth2 ] && cmp $auth1 $auth2 &>/dev/null; then
-    : 
-else
+if [ ! -f $auth1 ] || [ ! -f $auth2 ] || ! cmp $auth1 $auth2; then
 cat > $auth1 <<EOF
 localclient:$PASSWORD:10
 docker:$PASSWORD:10
@@ -38,60 +36,57 @@ docker:$PASSWORD:10
 EOF
 fi
 
-# Check if conf files exists, if not copy it 
+# Check if conf files exists, if not create it 
 
 core=/config/deluged/core.conf
 web=/config/deluge-web/web.conf
 
-if [ -s $core ]; then
-:
-else
-mv /root/core.conf $core
-fi
+if [ ! -f $core ]; then wget -q https://raw.githubusercontent.com/Nottt/easy-deluge/master/files/core.conf -O $core; fi
 
-
-if [ -s $web ]; then
-:
-else
-mv /root/web.conf $web
-fi
-
+if [ ! -f $web ]; then wget -q https://raw.githubusercontent.com/Nottt/easy-deluge/master/files/web.conf -O $web; fi
 
 # Move plugins if they don't exist already
 
-plugins=/config/deluged/plugins
+label=/config/deluged/label.conf
 
-if [ ! -e /config/deluge-web/plugins/AutoRemovePlus-0.6.1-py2.7.egg ]; then
- cp /root/AutoRemovePlus-0.6.1-py2.7.egg /config/deluge-web/plugins
-fi
+if [ ! -f $label ]; then wget -q https://raw.githubusercontent.com/Nottt/easy-deluge/master/files/label.conf -O $label; fi
 
-if [ -z "$(ls -A $plugins)" ]; then
-mv /root/*.egg $plugins
-else
-rm /root/*.egg
-fi
+autoadd=/config/deluged/autoadd.conf
 
-# Customize plugins
+if [ ! -f $autoadd ]; then wget -q https://raw.githubusercontent.com/Nottt/easy-deluge/master/files/autoadd.conf -O $autoadd; fi
 
-if [ -s /config/deluged/label.conf ]; then
-rm /root/label.conf
-else
-mv /root/label.conf /config/deluged 
-fi
+extractor=/config/deluged/simpleextractor.conf
 
-if [ -s /config/deluged/autoadd.conf ]; then
-rm /root/autoadd.conf
-else
-mv /root/autoadd.conf /config/deluged
-fi
+if [ ! -f $extractor ]; then wget -q https://raw.githubusercontent.com/Nottt/easy-deluge/master/files/simpleextractor.conf -O $extractor; fi
 
-if [ -s /config/deluged/simpleextractor.conf ]; then
-rm /root/simpleextractor.conf
-else
-mv /root/simpleextractor.conf /config/deluged
-fi
+autoremove=/config/deluged/plugins/AutoRemovePlus-0.6.1-py2.7.egg
 
+if [ ! -f $autoremove ]; then wget -q https://raw.githubusercontent.com/Nottt/easy-deluge/master/files/AutoRemovePlus-0.6.1-py2.7.egg -O $autoremove; fi
+
+DefaultTrackers=/config/deluged/plugins/DefaultTrackers-0.1-py2.7.egg
+
+if [ ! -f $DefaultTrackers ]; then wget -q https://raw.githubusercontent.com/Nottt/easy-deluge/master/files/DefaultTrackers-0.1-py2.7.egg -O $DefaultTrackers; fi
+
+LabelPlus=/config/deluged/plugins/LabelPlus-0.3.2.2-py2.7.egg
+
+if [ ! -f $LabelPlus ]; then wget -q https://raw.githubusercontent.com/Nottt/easy-deluge/master/files/LabelPlus-0.3.2.2-py2.7.egg -O $LabelPlus; fi
+
+SimpleExtractor=/config/deluged/plugins/SimpleExtractor-0.4.1-py2.7.egg
+
+if [ ! -f $SimpleExtractor ]; then wget -q https://raw.githubusercontent.com/Nottt/easy-deluge/master/files/SimpleExtractor-0.4.1-py2.7.egg -O $SimpleExtractor; fi
+
+Streaming=/config/deluged/plugins/Streaming-0.8.1-py2.7.egg
+
+if [ ! -f $Streaming ]; then wget -q https://raw.githubusercontent.com/Nottt/easy-deluge/master/files/Streaming-0.8.1-py2.7.egg -O $Streaming; fi
+
+ltConfig=/config/deluged/plugins/ltConfig-0.3.1-py2.7.egg
+
+if [ ! -f $ltConfig ]; then wget -q https://raw.githubusercontent.com/Nottt/easy-deluge/master/files/ltConfig-0.3.1-py2.7.egg -O $ltConfig; fi
 
 # Fix permissions
 
 chown -R deluge:deluge /config /downloads /root
+
+# Cleanup 
+
+apt remove software-properties-common apt-utils -y && apt-get autoremove -y && apt clean && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* 
