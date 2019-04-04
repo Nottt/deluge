@@ -89,4 +89,4 @@ chown -R deluge:deluge /config /downloads /root
 
 # Cleanup 
 
-apt remove software-properties-common apt-utils -y && apt-get autoremove -y && apt clean && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* 
+apt remove software-properties-common apt-utils -y > /dev/null 2>&1 && apt-get autoremove -y > /dev/null 2>&1 && apt clean > /dev/null 2>&1 && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* 
