@@ -2,7 +2,7 @@
 
 A deluge docker container that is easy to use, with plugins and GTK access.
 
-A docker templae for *nix systems  :
+A docker template for *nix systems  :
 
 ```
 docker create --rm \
@@ -15,7 +15,7 @@ docker create --rm \
            -v ~/downloads:/downloads \
            -v /etc/localtime:/etc/localtime:ro \
            -v /opt/deluge:/config \
-           nottt/easy-deluge
+           nottt/deluge
 ```
 ## Parameters
 
@@ -42,7 +42,7 @@ By default completed downloads are moved to `/complete` and kept in `/incomplete
 
 # Plugins : 
 
-## Enabled by default with custom settings :
+### Enabled by default with custom settings :
 
 * **Label :**
 
@@ -57,7 +57,7 @@ Torrents added to either `/music` or `/games` subfolders will be added with same
 
 Files will be automatically extracted inside the folder they were downloaded. You don't need to do anything! The .rar/.zip files will be kept for seeding. 
 
-## Available to be enabled :
+### Available to be enabled :
 
 * **DefaultTrackers** = Add trackers automatically to public trackers only
 
