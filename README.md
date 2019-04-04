@@ -15,7 +15,7 @@ docker create --rm \
            -v ~/downloads:/downloads \
            -v /etc/localtime:/etc/localtime:ro \
            -v /opt/deluge:/config \
-           nottt/easy-deluge
+           nottt/deluge
 ```
 ## Parameters
 
