@@ -1,3 +1,0 @@
-PUID=${PUID:-1000}
-PGID=${PGID:-1000}
-PASSWORD=${PASSWORD:-$(tr -dc '[:alnum:]' </dev/urandom | dd bs=1 count=32 2>/dev/null)}
