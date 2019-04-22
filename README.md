@@ -77,7 +77,7 @@ Push torrents to rutorrent for seeding
 
 # How to contribute
 
-1. Clone the branch with `git clone https://github.com/Nottt/easy-deluge`
+1. Clone the branch with `git clone https://github.com/Nottt/deluge`
 2. Go inside the created directory and build the new docker with `docker build -t deluge_dev .`
 3. Run it with :
 ```
