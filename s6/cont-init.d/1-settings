@@ -23,6 +23,9 @@ auth1=/config/deluged/auth
 auth2=/config/deluge-web/auth
 
 if [ ! -f $auth1 ] || [ ! -f $auth2 ] || ! cmp $auth1 $auth2; then
+
+PASSWORD=${PASSWORD:-$(tr -dc '[:alnum:]' </dev/urandom | dd bs=1 count=32 2>/dev/null)}
+
 cat > $auth1 <<EOF
 localclient:$PASSWORD:10
 docker:$PASSWORD:10
