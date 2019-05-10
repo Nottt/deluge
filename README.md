@@ -88,7 +88,6 @@ docker run --rm \
            -p 60000:50000 \
            -e PUID=1000 \
            -e PGID=1000 \
-           -e PASSWORD=password \
            -v ~/deluge-dev/downloads:/downloads \
            -v /etc/localtime:/etc/localtime:ro \
            -v /opt/deluge-dev:/config \
