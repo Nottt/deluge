@@ -71,32 +71,9 @@ To configure those you'll have to use the GTK UI, but it's set and forget after 
 
 * **LabelPlus** = For your most OCD labeling and organization needs
 
-# To Do List
+## Execute scripts at startup
 
-Push torrents to rutorrent for seeding
-
-# How to contribute
-
-1. Clone the branch with `git clone https://github.com/Nottt/deluge`
-2. Go inside the created directory and build the new docker with `docker build -t deluge_dev .`
-3. Run it with :
-```
-docker run --rm \
-           --name deluge-dev \
-           -p 7854:8112 \
-           -p 60002:58846 \
-           -p 60000:50000 \
-           -e PUID=1000 \
-           -e PGID=1000 \
-           -v ~/deluge-dev/downloads:/downloads \
-           -v /etc/localtime:/etc/localtime:ro \
-           -v /opt/deluge-dev:/config \
-           deluge_dev
-```
-4. Test your features
-5. Pull 
-
-OBS: Don't forget to change the ports, folders and --name and clean up the folders if you rebuild the docker after changing stuff
+If you need additional dependencies for your pp-scripts, you can install these by placing your script in the folder `/config/scripts.d`
 
 # Known Issues 
 
