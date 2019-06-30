@@ -1,8 +1,8 @@
 #!/usr/bin/with-contenv bash
 # shellcheck shell=bash
 
-if [[ -d "${CONFIG_DIR}/scripts.d" ]]; then
-    for script in "${CONFIG_DIR}/scripts.d/"*; do
+if [[ -d "/config/scripts.d" ]]; then
+    for script in "/config/scripts.d/"*; do
         ${script}
     done
 fi
